@@ -4,13 +4,12 @@ import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
 import compression from "compression"
 import cors from "cors"
-import mongoose from "mongoose"
+import config from "config"
+import database from "./database"
 
 import router from "./routes"
 
-const _PORT: number = 8080
-const _MONGO_URL: string =
-  "mongodb+srv://ritchey:ritchey@cluster0.ubojznc.mongodb.net/?retryWrites=true&w=majority"
+const PORT = config.get<number>("port")
 
 const app = express()
 
@@ -26,12 +25,10 @@ app.use(bodyParser.json())
 
 const server = http.createServer(app)
 
-server.listen(_PORT, () => {
-  console.log(`Server running on http://localhost:${_PORT}`)
+server.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`)
 })
 
-mongoose.Promise = Promise
-mongoose.connect(_MONGO_URL)
-mongoose.connection.on("error", (error: Error) => console.log(error))
+database.connect()
 
-app.use('/', router())
+app.use("/", router())
