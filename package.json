@@ -30,6 +30,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "mongoose": "^8.0.3"
+    "mongoose": "^8.0.3",
+    "zod": "^3.22.4"
   }
 }

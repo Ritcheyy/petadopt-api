@@ -1,6 +1,6 @@
 import config from "config"
 import express from "express"
-import { createUser, findUser } from "../services/user.service"
+import { findUser } from "../services/user.service"
 import { hashPassword, random } from "../helpers"
 
 export const login = async (req: express.Request, res: express.Response) => {
@@ -56,16 +56,17 @@ export const register = async (req: express.Request, res: express.Response) => {
     }
 
     const salt = random()
-    const user = await createUser({
+    // const user
+    /*= await createUser({
       email,
       username,
       authentication: {
         salt,
         password: hashPassword(salt, password),
       },
-    })
+    })*/
 
-    return res.status(200).json(user).end()
+    // return res.status(200).json(user).end()
   } catch (error) {
     console.log(error)
     return res.sendStatus(400)

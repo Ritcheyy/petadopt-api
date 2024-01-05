@@ -1,11 +1,13 @@
 import express from "express"
 
-import auth from "./auth.route"
+import authRoute from "./auth.route"
+import petRoute from "./pet.route"
 
 const router = express.Router()
 
 export default (): express.Router => {
-  auth(router)
+  authRoute(router)
+  petRoute(router)
 
   return router
 }
