@@ -1,4 +1,5 @@
 import { IPet, PetModel } from "../models/pet.model"
+import { Schema } from "mongoose"
 
 export const createPet = async (petInput: IPet) => {
   try {
@@ -8,7 +9,7 @@ export const createPet = async (petInput: IPet) => {
   }
 }
 
-export const fetchAllPets = async () => {
+export const getAllPets = async () => {
   try {
     return await PetModel.find()
       .select([
@@ -22,6 +23,16 @@ export const fetchAllPets = async () => {
         "-isAdopted",
       ])
       .limit(20)
+      .exec()
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+export const getPetById = async (petId: string) => {
+  try {
+    return await PetModel.findById(petId, "-__v")
+      .populate("owner", "-__v -updatedAt")
       .exec()
   } catch (error: any) {
     throw new Error(error)
