@@ -1,4 +1,4 @@
-import express from "express"
+import express, { Request, Response } from "express"
 import http from "http"
 import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
@@ -32,3 +32,7 @@ server.listen(PORT, () => {
 database.connect()
 
 app.use("/", router())
+
+app.use((req: Request, res: Response) => {
+  res.status(404).send({ statusCode: 404, message: "Route not found" }).end()
+})

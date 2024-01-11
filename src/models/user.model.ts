@@ -13,6 +13,13 @@ const UserSchema = new Schema(
   },
   {
     timestamps: true,
+    versionKey: false,
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id
+        delete ret._id
+      },
+    },
   },
 )
 

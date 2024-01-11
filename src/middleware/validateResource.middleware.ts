@@ -11,7 +11,6 @@ const validate =
       })
       next()
     } catch (error: any) {
-      console.log('here')
       return res.status(400).send(error.errors)
     }
   }

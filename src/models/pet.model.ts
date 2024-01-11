@@ -13,7 +13,20 @@ const PetSchema = new Schema(
     imgUrl: { type: String, required: true },
     owner: { type: Schema.Types.ObjectId, ref: "User" },
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+    versionKey: false,
+    toJSON: {
+      transform(doc, ret) {
+        ret = {
+          id: ret._id,
+          ...ret,
+        }
+        delete ret._id
+        return ret
+      },
+    },
+  },
 )
 
 export type IPet = InferSchemaType<typeof PetSchema>
