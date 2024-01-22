@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Build docker image
-      run: docker build . -t ritcheyy/petadopt-api
+      run: docker build . --file Dockerfile -t ritcheyy/petadopt-api
 
     - name: Publish docker image
       run: | 
