@@ -21,5 +21,6 @@ jobs:
     - run: docker build . -t ritcheyy/petadopt-api
 
     - name: Publish docker image
+    - uses: actions/checkout@v3
     - run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
     - run: docker push ritcheyy/petadopt-api
