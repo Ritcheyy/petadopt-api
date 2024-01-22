@@ -17,11 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Build docker image
-      uses: actions/checkout@v3
       run: docker build . -t ritcheyy/petadopt-api
 
     - name: Publish docker image
-      uses: actions/checkout@v3
       run: | 
         docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
         docker push ritcheyy/petadopt-api
